@@ -8,3 +8,5 @@ KEY_VALUE=$(aws ssm get-parameters --names $KEY_NAME --with-decryption --region 
 
 echo "$KEY_VALUE" > $FILE
 chmod 400 $FILE
+# add key to ssh management
+ssh-add $File

@@ -5,3 +5,4 @@ KEY_VALUE=$(aws ssm get-parameters --names $KEY_NAME --with-decryption --region 
 
 echo "$KEY_VALUE" >> $KEY_NAME
 chmod 400 $KEY_NAME
+ssh-add $KEY_NAME
