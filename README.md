@@ -86,7 +86,11 @@ The S3 bucket for the training exercise is twna-dataeng-training-storage
 
 To access the k8 cluster it's necessary to download the private key and setup your k8 kubeconfig
 
-run:
+First you need to install kops, we'll do this via homebrew as well:
+
+```brew install kops```
+
+Once this is done you can run:
 
 ```./set_k8_context.sh```
 
