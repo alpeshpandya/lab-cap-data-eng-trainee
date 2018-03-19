@@ -15,6 +15,14 @@ Edit ~/.aws/credentials and add the following information
 aws_access_key_id = <aws_access_key_id>
 aws_secret_access_key = <aws_secret_access_key>
 ```
+
+## install JQ
+
+You need to install JQ to allow the bash scripts to parse JSON output. To do so we'll use homebrew on OS X devices. For other OS's use the
+appropriate package manager.
+
+```brew install jq```
+
 ## Accessing EMR
 
 
@@ -70,6 +78,16 @@ To open the web interfaces, in your browser's address bar, type 'emr.training.tw
 |Ganglia | http://emr.training.twdps.io/ganglia/ |
 
 
-S3 Bucket
+## S3 Bucket
 
 The S3 bucket for the training exercise is twna-dataeng-training-storage
+
+## Access to Kubernettes
+
+To access the k8 cluster it's necessary to download the private key and setup your k8 kubeconfig
+
+run:
+
+```./set_k8_context.sh```
+
+This should download the appropriate keys, setup your kubectl configuration and as a test display all the running pods within the k8 cluster
