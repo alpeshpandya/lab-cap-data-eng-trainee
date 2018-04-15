@@ -3,9 +3,7 @@ jobs:
   build-bikestream:
     docker:
       - image: circleci/openjdk:8-jdk
-        auth:
-          username: $DOCKER_USER
-          password: $QUAY_TOKEN
+
     environment:
         AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
         AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
