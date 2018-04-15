@@ -25,7 +25,7 @@ bootJar {
 }
 
 docker {
-    name 'quay.io/ranbirchawla/bikestream'
+    name 'quay.io/thoughtworks_aelab/bikestream'
     tags 'test','0.1.0'
     dockerfile file('src/main/docker/Dockerfile')
     dependsOn assemble
