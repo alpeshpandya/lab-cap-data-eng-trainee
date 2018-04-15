@@ -13,6 +13,14 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: true
       - run: |
+          curl -LO https://services.gradle.org/distributions/gradle-4.6-bin.zip
+          sudo mkdir /opt/gradle
+          mv gradle-4.6-bin.zip /opt/gradle
+          sudo unzip -d /opt/gradle gradle-4.6-bin.zip
+          export PATH=$PATH:/opt/gradle/gradle-4.6/bin
+          gradle -v
+
+      - run: |
           curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
           sudo mv kubectl /usr/local/bin/kubectl
           sudo chmod +x /usr/local/bin/kubectl
@@ -29,7 +37,7 @@ jobs:
       - run: |
           cd kafka/bikestream
           TAG=0.1.$CIRCLE_BUILD_NUM
-          ./gradlew build
+          gradle build
           mkdir -p build/docker
           cp src/main/Docker/Dockerfile build/docker
           cp build/libs/*.jar build/docker
