@@ -25,7 +25,7 @@ public class Application {
 
     @Autowired
     private KafkaProducer kafkaProducer;
-    
+
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args).close();
     }
@@ -51,7 +51,6 @@ public class Application {
     @KafkaListener(id = "test", topics = "${write.topic}")
     public void listen(ConsumerRecord<?, ?> cr) throws Exception {
         logger.info("HEY MESSAGE RECEIVED---->{}",cr.toString());
-//        latch.countDown();
     }
 
 }
