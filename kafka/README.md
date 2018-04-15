@@ -1,6 +1,9 @@
 ```brew install gradle```
 
+brew install zookeeper
 brew install kafka
+
+brew tools reference: https://gist.github.com/pkafel/7cca260427532bf64c58407964c623d2
 
 ```bin/kafka-console-producer.sh --broker-list localhost:9092 --topic ranbir_test```
 
