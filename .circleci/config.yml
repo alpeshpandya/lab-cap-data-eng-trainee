@@ -7,7 +7,7 @@ jobs:
             AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
             AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
             AWS_DEFAULT_REGION: us-west-2
-            APP_HOME=kafka/bikestream
+            APP_HOME:kafka/bikestream
     steps:
       - checkout
       - setup_remote_docker:
