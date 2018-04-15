@@ -19,7 +19,7 @@ jobs:
           aws_access_key_id=$AWS_ACCESS_KEY_ID
           aws_secret_access_key=$AWS_SECRET_ACCESS_KEY
           EOF
-
+          cat ~/.aws/credentials
       - run: |
           curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
           sudo mv kubectl /usr/local/bin/kubectl
