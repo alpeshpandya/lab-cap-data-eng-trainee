@@ -13,12 +13,12 @@ jobs:
       - setup_remote_docker:   # (2)
           docker_layer_caching: true # (3)
       - run: |
-        mkdir -p ~/.aws/
-        cat <<EOF > ~/.aws/credentials
-        [default]
-        aws_access_key_id=$AWS_ACCESS_KEY_ID
-        aws_secret_access_key=$AWS_SECRET_ACCESS_KEY
-        EOF
+          mkdir -p ~/.aws/
+          cat <<EOF > ~/.aws/credentials
+          [default]
+          aws_access_key_id=$AWS_ACCESS_KEY_ID
+          aws_secret_access_key=$AWS_SECRET_ACCESS_KEY
+          EOF
 
       - run: |
           curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
