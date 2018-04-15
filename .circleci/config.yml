@@ -1,25 +1,16 @@
 version: 2.0
 jobs:
-  build-bikestream:
+  build:
     docker:
       - image: circleci/openjdk:8-jdk
-
-    environment:
-        AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
-        AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
-        AWS_DEFAULT_REGION: us-west-2
+        environment:
+            AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+            AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+            AWS_DEFAULT_REGION: us-west-2
     steps:
       - checkout
-      - setup_remote_docker:   # (2)
-          docker_layer_caching: true # (3)
-      - run: |
-          mkdir -p ~/.aws/
-          cat <<EOF > ~/.aws/credentials
-          [default]
-          aws_access_key_id=$AWS_ACCESS_KEY_ID
-          aws_secret_access_key=$AWS_SECRET_ACCESS_KEY
-          EOF
-          cat ~/.aws/credentials
+      - setup_remote_docker:
+          docker_layer_caching: true
       - run: |
           curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
           sudo mv kubectl /usr/local/bin/kubectl
@@ -31,9 +22,9 @@ jobs:
           sudo apt-get install python-pip python-dev jq
           sudo pip install awscli
       - run:
-          command: docker login -u $DOCKER_USER -p $DOCKER_PASS quay.io
-      - run:
           command ./circle_setup_k8.sh
+      - run:
+          command: docker login -u $DOCKER_USER -p $DOCKER_PASS quay.io
       - run: |
           cd kafka/bikestream
           TAG=0.1.$CIRCLE_BUILD_NUM
