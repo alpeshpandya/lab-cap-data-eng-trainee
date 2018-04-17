@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
@@ -21,8 +22,13 @@ public class KafkaProducer {
     @Autowired
     private KafkaTemplate<String, String> template;
 
-    public void sendMessage(final String message) {
-        ListenableFuture<SendResult<String,String>> future = this.template.send(writeTopic,message);
+
+
+     @Async("kafkaProducerExecutor")
+    public void sendMessage(final String key, final String message) {
+        System.out.println("Execute method with configured executor - "
+                + Thread.currentThread().getName());
+        ListenableFuture<SendResult<String, String>> future = this.template.send(writeTopic, key, message);
         future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
 
             @Override

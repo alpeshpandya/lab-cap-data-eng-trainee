@@ -48,9 +48,9 @@ public class Application {
         };
     }
 
-    @KafkaListener(id = "test", topics = "${write.topic}")
-    public void listen(ConsumerRecord<?, ?> cr) throws Exception {
-        logger.info("HEY MESSAGE RECEIVED---->{}",cr.toString());
-    }
+//    @KafkaListener(id = "test", topics = "${write.topic}")
+//    public void listen(ConsumerRecord<?, ?> cr) throws Exception {
+//        logger.info("HEY MESSAGE RECEIVED---->{}",cr.toString());
+//    }
 
 }
